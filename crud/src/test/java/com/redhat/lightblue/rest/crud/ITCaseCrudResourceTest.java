@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
-import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
 import com.redhat.lightblue.config.CrudConfiguration;
 import com.redhat.lightblue.config.MetadataConfiguration;
 import com.redhat.lightblue.metadata.EntityMetadata;
@@ -129,7 +129,7 @@ public class ITCaseCrudResourceTest {
 
     private static MongodExecutable mongodExe;
     private static MongodProcess mongod;
-    private static Mongo mongo;
+    private static MongoClient mongo;
     private static DB db;
 
     static {
@@ -166,7 +166,7 @@ public class ITCaseCrudResourceTest {
                 // try again, could be killed breakpoint in IDE
                 mongod = mongodExe.start();
             }
-            mongo = new Mongo(IN_MEM_CONNECTION_URL);
+            mongo = new MongoClient(IN_MEM_CONNECTION_URL);
 
             MongoConfiguration config = new MongoConfiguration();
             // disable ssl for test (enabled by default)
